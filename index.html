@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+ 
+    <title>Hangman</title>
+
+    <style>
+        .row, .col {
+            border: 5px solid white;
+        }
+
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-color: yellow;
+        }
+        .container {
+            text-align: center;
+            margin-top: 300px;
+        }
+
+    </style>
+</head>
+<body>
+
+        <div class="container">
+                <div class="row">
+                  <div class="col">
+                    1 of 2
+                  </div>
+                  <div class="col">
+                    <p>Press any key to get started!!</p>  
+                    <div id="wins">Wins:</div>
+                    <div id="underscore-text">Current Word: _ _ _ _</div>
+                    <div id="guesses">Number of Guesses Remaining:</div>
+                    <div id="rightlettersguessed">Right Letters Guessed:</div>
+                    <div id="wronglettersguessed">Wrong Letters Guessed:</div>
+                  </div>
+                </div>
+   <script type="text/javascript" src="/Assets/JavaScript/game.js"></script>
+    
+</body>
+</html>
