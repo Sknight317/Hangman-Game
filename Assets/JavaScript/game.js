@@ -16,13 +16,12 @@
         RightWord =[];
         WrongWord =[];
         GuessesRemain =10;
-        
-        //Checking if it works
-        
         console.log(beachrandom);
+        createUnderscore();
         document.getElementById("underscore-text").textContent = "Current Word: " + underScore.join(' ');
         document.getElementById("rightlettersguessed").textContent = "Right Letters Guessed: " + RightWord;
         document.getElementById("guesses").textContent = "Number of Guesses Remaining: " + GuessesRemain;
+        document.getElementById("underscore-text").textContent = "Current Word: " + underScore.join(' ');
         }
 
    
@@ -40,7 +39,7 @@
         document.getElementById("wronglettersguessed").textContent = "Wrong Letters Guessed: " + WrongWord;
         
         
-        
+        //chooses a random word from the beachwords array.
         beachrandom = beachwords[Math.floor(Math.random() * beachwords.length)];
         
         //Checking if it works
