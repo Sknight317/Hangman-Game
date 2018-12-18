@@ -5,41 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="Assets/CSS/style.css">
- 
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Kurale|Special+Elite" rel="stylesheet">
     <title>Hangman</title>
 
-   
 </head>
 <body>
-  
-
-    <h1>Hangman: At the Beach</h1>
-
-        <div class="container">
+    <div class="title"><h1 >Hangman at the Beach </h1></div>
+        <div class="bg-image"></div>
+        <div class="bg-text">
                 <div class="row">
+                
                   <div class="col">
-                      <br>
-                      <br>
-                      <br>
-                    <img src="Assets/Images/Mauritius-Beaches-Tropical-beach-xlarge.jpg" alt="Beach">
-                  </div>
-                  <div class="col">
-                    <br>
-                    <br>
-                    <br>
-                    <p>Press any key to get started!!</p>  
+                    <p id="press">Press any key to get started!!</p>
+                    <div id="score"></div>
+                    <div id="correct"></div> 
+                    <div id="game">
                     <div id="wins">Wins:</div>
                     <div id="underscore-text">Current Word: _ _ _ _</div>
                     <div id="guesses">Number of Guesses Remaining:</div>
                     <div id="rightlettersguessed">Right Letters Guessed:</div>
                     <div id="wronglettersguessed">Wrong Letters Guessed:</div>
-              
-                    <br>
-                    <br>
+                </div> 
+                    <div id="button"></div>
                   </div>
                 </div>
-   <script type="text/javascript" src="Assets/JavaScript/game.js"></script>
-    
+                
+    <script>
+
+        //Variables
+        //Used to record how many times a letter can be pressed.
+        var doubleLetter = ['a','b','c',
+				  'd','e','f',
+				  'g','h','i',
+				  'j','k','l',
+				  'm','n','o',
+				  'p','q','r',
+				  's','t','u',
+				  'v','w','x',
+                    'y','z'];
+        //Create an array of words
+        var beachwords = ["beach", "waves", "shovel", "towel", "hat", "sunblock", "sand", "swim", "boat"]
+        //Chooses a random word from the array.
+        
+        var underScore = [];
+        var RightWord = [];
+        var WrongWord = [];
+        var GuessesRemain =10;
+        var wins = 0;
+
+        
+        //Dom manipulation
+        
+        document.getElementById("underscore-text").textContent = "Current Word: " + underScore.join(' ');
+         
+        //Displays the number of wins
+        document.getElementById("wins").textContent = "Wins: " + wins;
+        
+        document.getElementById("guesses").textContent = "Number of Guesses Remaining: " + GuessesRemain;
+        //Displays the right letters guessed from the right letters array.
+        document.getElementById("rightlettersguessed").textContent = "Right Letters Guessed: " + RightWord;
+        //Displays the wrong letters guessed from the wrong letters array.
+        document.getElementById("wronglettersguessed").textContent = "Wrong Letters Guessed: " + WrongWord;
+        
+        function resetGame() {
+           
+        document.getElementById("score").textContent = "";
+        document.getElementById("underscore-text").textContent = "Current Word: ";
+         document.getElementById("guesses").textContent = "Number of Guesses Remaining: " ;
+         document.getElementById("rightlettersguessed").textContent = "Right Letters Guessed: " ;
+         document.getElementById("wronglettersguessed").textContent = "Wrong Letters Guessed: " ;
+         $("#game").show();
+         $("#press").hide();
+         $("#correct").empty();
+        $("#button").empty();
+        underScore = [];
+        RightWord = [];
+        WrongWord = [];
+        GuessesRemain =10;
+        beachrandom = beachwords[Math.floor(Math.random() * beachwords.length)];
+        
+        //Checking if it works
+        console.log(beachrandom);
+        createUnderscore();
+        
+        } 
+        
+        beachrandom = beachwords[Math.floor(Math.random() * beachwords.length)];
+        underScore = [];
+        RightWord = [];
+        WrongWord = [];
+        GuessesRemain =10;
+        //Checking if it works
+        console.log(beachrandom);  
+        
+        
+        //Create underscores based on length of words.
+        var createUnderscore = function() {
+            for (var i = 0; i < beachrandom.length; i++) {
+            underScore.push('_');
+            
+            
+        }
+        return underScore;
+        }
+        //Test
+        console.log(createUnderscore());
+        
+        //When user presses a key, capture what the user presses and see if each letter matches a letter in a random word.//Have user press keys to try to guess the word.
+        document.addEventListener('keypress', function(event) {
+            var keycode = event.keyCode;
+            var newword = String.fromCharCode(keycode);
+            
+        console.log(newword);
+        //If user's guess is right
+             
+            if(beachrandom.indexOf(newword) > -1) {
+        // Push to the right words array
+            RightWord.push(newword);
+            document.getElementById("rightlettersguessed").textContent = "Right Letters Guessed: " + RightWord;
+        //Replace underscore with the right letter
+            underScore[beachrandom.indexOf(newword)] = newword;
+            document.getElementById("underscore-text").textContent = "Current Word: " + underScore.join(' ');
+            
+        
+            
+        //Checks to see if the actual word matches the guesses
+            if(underScore.join('') === beachrandom) {
+                // alert("You Win!!");
+                document.getElementById("score").textContent = "You Win!!";
+                
+                wins++;
+                document.getElementById("wins").textContent = "Wins: " + wins;
+                $("#game").hide();
+                $("#correct").append("The correct word was: " + beachrandom);
+                $("#button").append('<div><button id="reset" onclick="resetGame()">Play Again</button></div>');
+                
+                // resetGame();
+                
+            }
+        }
+        
+            else {
+            //Pushes wrong letters into the wrong words array
+            WrongWord.push(newword);
+            GuessesRemain--;
+            
+            document.getElementById("wronglettersguessed").textContent = "Wrong Letters Guessed: " + WrongWord;
+            document.getElementById("guesses").textContent = "Number of Guesses Remaining: " + GuessesRemain;
+            document.getElementById("wronglettersguessed").textContent = "Wrong Letters Guessed: " + WrongWord;
+            
+            }
+
+            if(GuessesRemain === 0) {
+                // alert("You lose :(");
+                // resetGame();
+                document.getElementById("score").textContent = "Sorry..You Lose!";
+                $("#game").hide();
+                
+                $("#correct").append("The correct word was: " + beachrandom);
+                
+               $("#button").append('<div><button id="reset" onclick="resetGame()">Play Again</button></div>');
+                
+               
+            }
+
+            
+           });  
+            
+        
+    </script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
 </body>
 </html>

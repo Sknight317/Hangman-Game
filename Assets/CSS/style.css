@@ -1,24 +1,90 @@
-.row, .col {
-    border: 5px solid white;
-}
 
-
-body {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: yellow;
+body, html {
+    height: 100%;
 }
-.container {
+  
+* {
+    box-sizing: border-box;
+}
+.bg-image {
+    background-image: url("../images/pexels-photo-753626.jpeg");
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+.bg-text {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
     text-align: center;
-    margin-top: 300px;
+    font-family: 'Special Elite', cursive;
+    font-size: 1.5rem;
+    border-radius: 15px;
+  }
+.title {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    z-index: 2;  
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #f1f1f1;
+    font-family: 'Special Elite', cursive;
+    padding: 3px;
+    border-radius: 15px;
+    text-align:center;
+}
+#reset {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(226, 207, 207);   
+    color:black;
+    font-size: 25px;
+    border-radius: 30px;
+    margin: 10px 40px 10px 0px;
+    padding: 10px 10px;
+    text-align: center; 
+   
+}
+#reset:hover {
+    cursor: pointer;
+    background-color: rgb(109, 104, 104);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    outline: none;
+}
+#reset:focus {
+    outline: 0;
+}
+#score {
+    font-size: 40px;
+    font-weight: bold;
 }
 
-img {
-    width: 300px;
-    height: 200px;
-    
-}
-h1 {
-    font-weight: 900;
-    text-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+    .bg-text {
+        top: 75%;
+    }
+    .title {
+        top: 20%;
+    }
+  }
