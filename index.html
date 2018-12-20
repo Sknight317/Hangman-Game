@@ -76,7 +76,7 @@
          document.getElementById("rightlettersguessed").textContent = "Right Letters Guessed: " ;
          document.getElementById("wronglettersguessed").textContent = "Wrong Letters Guessed: " ;
          $("#game").show();
-         $("#press").hide();
+         $("#press").show();
          $("#correct").empty();
         $("#button").empty();
         underScore = [];
@@ -138,6 +138,7 @@
                 wins++;
                 document.getElementById("wins").textContent = "Wins: " + wins;
                 $("#game").hide();
+                $("#press").hide();
                 $("#correct").append("The correct word was: " + beachrandom);
                 $("#button").append('<div><button id="reset" onclick="resetGame()">Play Again</button></div>');
                 
@@ -162,7 +163,7 @@
                 // resetGame();
                 document.getElementById("score").textContent = "Sorry..You Lose!";
                 $("#game").hide();
-                
+                $("#press").hide();
                 $("#correct").append("The correct word was: " + beachrandom);
                 
                $("#button").append('<div><button id="reset" onclick="resetGame()">Play Again</button></div>');
